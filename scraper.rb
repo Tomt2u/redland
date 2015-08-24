@@ -47,11 +47,11 @@ comment_url = "mailto:enquiry@redland.qld.gov.au"
 agent = Mechanize.new
 
 # Read in a page
-page = agent.get(url)
+#page = agent.get(url)
 
-form = page.forms.first
-button = form.button_with(value: "Agree")
-form.submit(button)
+#form = page.forms.first
+#button = form.button_with(value: "Agree")
+#form.submit(button)
 # It doesn't even redirect to the correct place. Ugh
 page = agent.get(url)
 current_page_no = 1
