@@ -6,7 +6,7 @@ require 'mechanize'
 def scrape_page(page, comment_url)
   page.at("table.rgMasterTable").search("tr.rgRow,tr.rgAltRow").each do |tr|
     tds = tr.search('td').map{|t| t.inner_html.gsub("\r\n", "").strip}
-    day, month, year = tds[2].split("/").map{|s| s.to_i}
+    day, month, year = tds[2].split(" ").map{|s| s.to_i}
     record = {
       "info_url" => (page.uri + tr.search('td').at('a')["href"]).to_s,
       "council_reference" => tds[1],
@@ -44,7 +44,7 @@ end
 url = "http://pdonline.redland.qld.gov.au/Modules/ApplicationMaster/default.aspx?page=found&1=thismonth&4a=BD%27,%27BW%27,%27BA%27,%27MC%27,%27MCU%27,%27OPW%27,%27BWP%27,%27APS%27,%27ROL%27,%27MCSS%27,%27OP%27,%27EC%27,%27SB%27,%27SBSS%27,%27BX&6=F"
 comment_url = "mailto:enquiry@redland.qld.gov.au"
 
-agent = Mechanize.new
+#agent = Mechanize.new
 
 # Read in a page
 #page = agent.get(url)
@@ -53,7 +53,7 @@ agent = Mechanize.new
 #button = form.button_with(value: "Agree")
 #form.submit(button)
 # It doesn't even redirect to the correct place. Ugh
-page = agent.get(url)
+#page = agent.get(url)
 current_page_no = 1
 next_page_link = true
 
